@@ -1,0 +1,10 @@
+<main class="flex flex-col items-center h-[90%]">
+    <div *ngIf="isLoading" class="flex w-full h-[35vh] justify-center items-center" >
+        <app-loader></app-loader>
+    </div>
+    <div *ngIf="!isLoading" class="container grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1 gap-5 pb-6 px-4 sm:px-6 lg:px-8">
+        <div *ngFor="let movie of movies">
+            <app-movie-card [movie]="movie"></app-movie-card>
+        </div>
+    </div>
+</main>
