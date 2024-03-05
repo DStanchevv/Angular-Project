@@ -14,4 +14,9 @@ export class MovieService {
 
         return this.http.get<Movie[]>(`${apiUrl}/Movie/get-all-movies`)
     }
+
+    getMovieById() {
+        const { apiUrl } = environment
+        return this.http.get<Movie>(`${apiUrl}/Movie/get-movie/19`)
+    }
 }

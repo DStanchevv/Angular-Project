@@ -3,3 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 @import "~@fortawesome/fontawesome-free/css/all.css";
+.img-div {
+    @apply bg-gray-200;
+}
