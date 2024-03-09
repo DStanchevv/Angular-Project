@@ -13,12 +13,12 @@ export class MoviesListPageComponent implements OnInit{
   isLoading: boolean = true;
 
   ngOnInit(): void {
-    this.movieService.getMovies().subscribe((movies) => {
+    this.movieService.getMoviesByDateAsc().subscribe((movies) => {
       this.movies = movies; console.log(this.movies[0].images)
     })
 
     setTimeout(() => {
       this.isLoading = false;
-    }, 2000)
+    }, 500)
   }
 }

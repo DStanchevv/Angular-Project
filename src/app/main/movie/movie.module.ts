@@ -5,6 +5,7 @@ import { MovieCardComponent } from './movies-list-page/movie-card/movie-card.com
 import { SharedModule } from 'src/app/shared/shared.module';
 import { SingleMoviePageComponent } from './single-movie-page/single-movie-page.component';
 import { NgImageSliderModule } from 'ng-image-slider';
+import { MovieRoutingModule } from './movie-routing.module';
 
 @NgModule({
   declarations: [
@@ -15,11 +16,7 @@ import { NgImageSliderModule } from 'ng-image-slider';
   imports: [
     CommonModule,
     SharedModule,
-    NgImageSliderModule
-  ],
-  exports: [
-    MoviesListPageComponent,
-    SingleMoviePageComponent
+    MovieRoutingModule,
   ]
 })
 export class MovieModule { }

@@ -4,13 +4,13 @@
     </div>
     <div class="mt-4 flex justify-between">
       <div>
-        <h3 class="text-sm text-gray-700">
-          <a href="" class="font-bold text-xl">
+        <h3 class="text-sm text-gray-300">
+          <a [routerLink]="movie.id" class="font-bold text-xl">
             <span aria-hidden="true" class="absolute inset-0"></span>
             {{movie.name}}
           </a>
         </h3>
-        <p class="mt-1 text-sm text-gray-500">{{movie.releaseDate | date: 'dd.MM.yyyy' }}</p>
+        <p class="mt-1 text-sm text-gray-400">{{movie.releaseDate | date: 'dd.MM.yyyy' }}</p>
       </div>
     </div>
 </div>

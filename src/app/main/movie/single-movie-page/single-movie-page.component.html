@@ -1,13 +1,19 @@
-<div class="flex flex-col items-center pb-[30px]">
-    <div class="container flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 min-h-[30rem]">
+<div class="flex flex-col items-center">
+    <div *ngIf="isLoading" class="flex w-full h-[100vh] justify-center items-center" >
+        <app-loader></app-loader>
+    </div>
+    <div *ngIf="!isLoading" class="container flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
         <div *ngIf="images.length > 0" class="w-[100%]">
             <ng-image-slider [images]="images" [imageSize]="{width: 400, height: 600}" [manageImageRatio]="true"></ng-image-slider>
         </div>
-        <div class="flex flex-col w-full text-lg">
+        <div class="flex flex-col w-full text-lg text-gray-300 gap-3">
             <h1 class="font-bold text-2xl">{{movie.name}}</h1>
-            <p>Release date: {{movie.releaseDate | date: 'dd.MM.yyyy' }}</p>
-            <p>Director: {{movie.directorName}}</p>
-            <p>Length: {{movie.length}}</p>
+            <div>
+                <p><i>Release date:</i> {{movie.releaseDate | date: 'dd.MM.yyyy' }} <i class="fa-solid fa-calendar"></i></p>
+                <p><i>Director:</i> {{movie.directorName}}</p>
+                <p><i>Length:</i> {{movie.length}} minutes</p>
+            </div>
+            
             <p>{{movie.description}}</p>
         </div>
     </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { MovieService } from 'src/app/services/movie.service';
 import { Movie } from 'src/app/services/types/movie';
 
@@ -7,32 +8,33 @@ import { Movie } from 'src/app/services/types/movie';
   templateUrl: './single-movie-page.component.html',
 })
 export class SingleMoviePageComponent implements OnInit{
-  constructor(private movieService: MovieService) {}
+  constructor(private movieService: MovieService, private activeRoute: ActivatedRoute) {}
 
-  movie: Movie = { id: 0, name: "", description: "", directorName: "", images: [], releaseDate: "", length: 0};
+  movie = {} as Movie;
   images: Array<object> = []
   isLoading: boolean = true;
 
   ngOnInit(): void {
-    this.movieService.getMovieById().subscribe((movie) => {
-      this.movie = movie;
-      for(let img of movie.images) {
-        let image = {
-          image: img,
-          thumbImage: img,
-          alt: "movieImg",
-          title: ""
+    this.activeRoute.params.subscribe(data => {
+      this.movieService.getMovieById(data['movieId']).subscribe((movie) => {
+        this.movie = movie;
+        for(let img of movie.images) {
+          let image = {
+            image: img,
+            thumbImage: img,
+            alt: "movieImg",
+            title: ""
+          }
+          if(image.image !== "") {
+            this.images.push(image);
+          }
         }
-        if(image.image !== "") {
-          this.images.push(image);
-        }
-      }
-
-      console.log(this.images)
+      })
     })
+    
 
     setTimeout(() => {
       this.isLoading = false;
-    }, 2000)
+    }, 500)
   }
 }

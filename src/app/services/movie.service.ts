@@ -9,14 +9,20 @@ import { Movie } from "./types/movie";
 export class MovieService {
     constructor(private http: HttpClient) { }
 
-    getMovies() {
+    getMoviesByDateAsc() {
         const { apiUrl } = environment
 
-        return this.http.get<Movie[]>(`${apiUrl}/Movie/get-all-movies`)
+        return this.http.get<Movie[]>(`${apiUrl}/Movie/order-movie-by-release-date-asc`)
     }
 
-    getMovieById() {
+    getMoviesByDateDesc() {
         const { apiUrl } = environment
-        return this.http.get<Movie>(`${apiUrl}/Movie/get-movie/19`)
+
+        return this.http.get<Movie[]>(`${apiUrl}/Movie/order-movie-by-release-date-desc`)
+    }
+
+    getMovieById(id: string) {
+        const { apiUrl } = environment
+        return this.http.get<Movie>(`${apiUrl}/Movie/get-movie/${id}`)
     }
 }
