@@ -1,0 +1,43 @@
+<div *ngIf="isLoading" class="flex w-full h-[100vh] justify-center items-center" >
+    <app-loader></app-loader>
+</div>
+<div  *ngIf="!isLoading" class="flex flex-col items-center">
+    <div class="container flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col w-full text-xl text-gray-300 gap-y-3">
+            <h1 class="font-bold text-3xl mb-[30px]">Welcome to Cinemania – Your Ultimate Destination for Movie Enthusiasts!</h1>
+            <div class="flex flex-col gap-y-5">
+                <p>🎬 Discover, Rate, Comment 🍿</p>
+                <p>
+                    Welcome to CinemaniaHub, where the magic of cinema meets the power of community! 
+                    Dive into a world of cinematic wonder as we bring you the most comprehensive movie rating website on the internet.
+                    Whether you're a casual viewer or a hardcore film buff, CinemaniaHub is your go-to source for all things movies.
+                </p>
+                <p>🌟 What Sets Us Apart? 🌟</p>
+                <div class="flex flex-col gap-y-5">
+                    <p>
+                        ✨ Extensive Database: Explore a vast collection of movies spanning across genres, eras, and cultures. 
+                        Our extensive database ensures that you can find information on both timeless classics and the latest releases.
+                    </p>
+                    <p>
+                        ✨ Community-Driven Ratings: Be part of a thriving movie community! 
+                        Contribute to the conversation by rating and reviewing films. Your opinions matter, 
+                        and they help fellow movie lovers make informed choices.
+                    </p>
+                    <p>
+                        ✨ Latest Releases & Trailers: Stay in the know with up-to-the-minute information on the hottest 
+                        releases and exclusive trailers. CinemaniaHub keeps you ahead of the curve in the ever-evolving world of cinema.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container flex pb-[10px] px-4 sm:px-6 lg:px-8 mt-[30px]">
+        <h1 class="font-bold text-2xl text-gray-300">5 Latest:</h1>
+    </div>
+    <div class="container grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1 gap-5 px-4 sm:px-6 lg:px-8">
+        <div *ngFor="let movie of movies">
+            <app-home-card [movie]="movie" />
+        </div>
+    </div>
+   
+</div>
