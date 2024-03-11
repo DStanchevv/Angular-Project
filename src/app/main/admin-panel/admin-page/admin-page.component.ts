@@ -1,16 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MovieService } from 'src/app/services/movie.service';
 import { Movie } from 'src/app/services/types/movie';
 
 @Component({
-  selector: 'app-movies-list-page',
-  templateUrl: './movies-list-page.component.html',
+  selector: 'app-admin-page',
+  templateUrl: './admin-page.component.html',
 })
-export class MoviesListPageComponent implements OnInit{
+export class AdminPageComponent {
   constructor(private movieService: MovieService) {}
 
-  searchTerm: string = '';
-  dropdownStyles = "absolute hidden z-10 visible bg-gray-700 divide-y divide-white-100 rounded-md w-44";
   movies: Movie[] = [];
   isLoading: boolean = true;
 

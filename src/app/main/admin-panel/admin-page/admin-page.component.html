@@ -1,0 +1,46 @@
+<main class="flex flex-col w-full items-center">
+    <div *ngIf="isLoading" class="flex w-full h-[100vh] justify-center items-center" >
+        <app-loader></app-loader>
+    </div>
+    <div *ngIf="!isLoading" class="flex flex-col container px-4 sm:px-6 lg:px-8">
+        <app-filter-search [movies]="movies" (updatedMovies)="handleUpdatedMovies($event)" />
+        <div class="max-md:overflow-x-scroll max-md:scroll-">
+            <table class="w-full table-auto border border-collapse border-gray-300 text-gray-300">
+                <thead class="max-sm:text-sm">
+                  <tr class="text-left bg-gray-800">
+                    <th class="px-2 border border-gray-300 py-2">Movie Name</th>
+                    <th class="px-2 border border-gray-300 py-2">Description</th>
+                    <th class="px-2 border border-gray-300 py-2">Release Date</th>
+                    <th class="px-2 border border-gray-300 py-2">Director Name</th>
+                    <th class="px-2 border border-gray-300 py-2">Length</th>
+                    <th class="px-2 border border-gray-300 py-2">
+                        Options
+                    </th>
+                  </tr>
+                </thead>
+                
+                <tbody *ngFor="let movie of movies" class="max-sm:text-xs">
+                  <tr>
+                    <td class="px-2 border border-gray-300 py-2">{{movie.name}}</td>
+                    <td class="px-2 border border-gray-300 py-2"><span class="line-clamp-3">{{movie.description}}</span></td>
+                    <td class="px-2 border border-gray-300 py-2">{{movie.releaseDate | date: 'dd.MM.yyyy' }}</td>
+                    <td class="px-2 border border-gray-300 py-2">{{movie.directorName}}</td>
+                    <td class="px-2 border border-gray-300 py-2">{{movie.length}}</td>
+                    <td class="px-2 border border-gray-300 py-2">
+                        <span class="flex items-center justify-center gap-4 max-sm:flex-col">
+                            <a [routerLink]="movie.id" class="hover:text-white hover:cursor-pointer"><i class="fa-solid fa-pen-to-square"></i> </a> 
+                            <a [routerLink]="movie.id" class="hover:text-white hover:cursor-pointer"><i class="fa-solid fa-trash"></i></a>
+                        </span>
+                    </td>
+                  </tr>
+                </tbody>
+
+              </table>
+        </div>
+        <div class="pt-6">
+            <a routerLink="add-movie" class="shadow bg-indigo-500 hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded w-[12rem] text-center" type="button">
+                <i class="fa-regular fa-square-plus"></i> Add New Movie
+            </a>
+        </div>
+    </div>
+</main>
