@@ -4,8 +4,8 @@ import { MoviesListPageComponent } from './movies-list-page/movies-list-page.com
 import { MovieCardComponent } from './movies-list-page/movie-card/movie-card.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { SingleMoviePageComponent } from './single-movie-page/single-movie-page.component';
-import { NgImageSliderModule } from 'ng-image-slider';
 import { MovieRoutingModule } from './movie-routing.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,6 +17,7 @@ import { MovieRoutingModule } from './movie-routing.module';
     CommonModule,
     SharedModule,
     MovieRoutingModule,
+    FormsModule,
   ]
 })
 export class MovieModule { }

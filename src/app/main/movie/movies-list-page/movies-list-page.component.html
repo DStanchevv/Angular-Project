@@ -2,6 +2,36 @@
     <div *ngIf="isLoading" class="flex w-full h-[100vh] justify-center items-center" >
         <app-loader></app-loader>
     </div>
+    <div class="flex justify-between container pb-6 px-4 sm:px-6 lg:px-8">
+        <div class="relative">
+            <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <i class="fa-solid fa-magnifying-glass w-4 h-4 text-gray-500 dark:text-gray-400"></i>
+            </div>
+            <input type="search" [(ngModel)]="searchTerm" (ngModelChange)="onSearchChange()" class="block p-4 ps-10 text-sm text-gray-300 border border-gray-600 rounded-lg bg-gray-700 focus:ring-indgio-500 focus:border-indigo-500 placeholder-gray-400" placeholder="Search..." required />
+        </div>
+        <div (mouseenter)="filterButtonOnHover()" (mouseleave)="filterButtonOnHoverOut()">
+            <button class="text-white bg-indigo-500 hover:bg-indigo-500 font-medium rounded-md text-sm px-5 py-2.5 text-center inline-flex items-center" type="button">
+                <i class="fa-solid fa-filter"></i>&nbsp;Filter
+            </button>
+                
+            <div [class]="dropdownStyles">
+                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
+                    <li>
+                        <button (click)="relDateAsc()" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Release Date A-Z</button>
+                    </li>
+                    <li>
+                        <button (click)="nameAsc()" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Name A-Z</button>
+                    </li>
+                    <li>
+                        <button (click)="relDateDesc()" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Release Date Z-A</button>
+                    </li>
+                    <li>
+                        <button (click)="nameDesc()" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Name Z-A</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
     <div *ngIf="!isLoading" class="container grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1 gap-5 pb-6 px-4 sm:px-6 lg:px-8">
         <div *ngFor="let movie of movies">
             <app-movie-card [movie]="movie"></app-movie-card>

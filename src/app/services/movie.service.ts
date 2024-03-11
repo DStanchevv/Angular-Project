@@ -15,6 +15,24 @@ export class MovieService {
         return this.http.get<Movie[]>(`${apiUrl}/Movie/order-movie-by-release-date-asc`)
     }
 
+    getMoviesByNameAsc() {
+        const { apiUrl } = environment
+
+        return this.http.get<Movie[]>(`${apiUrl}/Movie/order-movie-by-name-asc`)
+    }
+
+    getMoviesByNameDesc() {
+        const { apiUrl } = environment
+
+        return this.http.get<Movie[]>(`${apiUrl}/Movie/order-movie-by-name-desc`)
+    }
+
+    searchMoviesByName(name: string) {
+        const { apiUrl } = environment
+
+        return this.http.get<Movie[]>(`${apiUrl}/Movie/search-movie-by-name?movieName=${name}`)
+    }
+
     getMoviesByDateDesc() {
         const { apiUrl } = environment
 
