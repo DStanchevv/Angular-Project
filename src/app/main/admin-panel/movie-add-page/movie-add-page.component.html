@@ -1,61 +1,82 @@
 <main class="flex flex-col w-full items-center">
     <div class="flex flex-col container px-4 sm:px-6 lg:px-8">
-        <form class="flex flex-col items-start w-full max-w-full">
+        <form class="flex flex-col items-start w-full max-w-full" [formGroup]="form" (ngSubmit)="addMovie()">
             <div class="md:flex mb-6 w-full items-center">
+              
+              <!-- Movie name -->
               <div class="w-[10rem]">
-                <label class="block text-gray-300 font-bold mb-1 md:mb-0 pr-4" for="inline-full-name">
-                  Full Name
+                <label class="block text-gray-300 font-bold mb-1 md:mb-0 pr-4" for="movieName">
+                  Movie Name
                 </label>
               </div>
               <div class="w-full">
-                <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-indigo-500" id="inline-full-name" required type="text">
-                <p *ngIf="" class="text-red-500"></p>
+                <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-indigo-500" type="text" name="movieName" id="movieName" placeholder="Movie name..." formControlName="movieName">
+                <ng-container *ngIf="form.get('movieName')?.touched">
+                  <p *ngIf="form.get('movieName')?.errors?.['required']" class="text-red-500">Movie name is required!</p>
+                </ng-container>
               </div>
             </div>
 
+            <!-- Movie description -->
             <div class="md:flex mb-6 w-full items-center">
                 <div class="w-[10rem]">
-                  <label class="block text-gray-300 font-bold mb-1 md:mb-0 pr-4" for="inline-full-name">
+                  <label class="block text-gray-300 font-bold mb-1 md:mb-0 pr-4" for="movieDescription">
                     Description
                   </label>
                 </div>
                 <div class="w-full">
-                  <textarea class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-indigo-500" rows="15" id="inline-full-name" type="text" required></textarea>
+                  <textarea class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-indigo-500" rows="15" type="text" name="movieDescription" id="movieDescription" placeholder="Movie description..." formControlName="movieDescription"></textarea>
+                  <ng-container *ngIf="form.get('movieDescription')?.touched">
+                    <p *ngIf="form.get('movieDescription')?.errors?.['required']" class="text-red-500">Movie description is required!</p>
+                  </ng-container>
                 </div>
+                
             </div>
 
+            <!-- Movie release date -->
             <div class="md:flex mb-6 w-full items-center">
                 <div class="w-[10rem]">
-                    <label class="block text-gray-300 font-bold mb-1 md:mb-0 pr-4" for="inline-full-name">
+                    <label class="block text-gray-300 font-bold mb-1 md:mb-0 pr-4" for="movieReleaseDate">
                     Release Date
                     </label>
                 </div>
                 <div class="w-full">
-                    <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-indigo-500" id="inline-full-name" required type="text">
+                  <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-indigo-500" type="text" name="movieReleaseDate" id="movieReleaseDate" placeholder="Movie release date..." formControlName="movieReleaseDate">
+                  <ng-container *ngIf="form.get('movieReleaseDate')?.touched">
+                    <p *ngIf="form.get('movieReleaseDate')?.errors?.['required']" class="text-red-500">Movie release date is required!</p>
+                    <p *ngIf="form.get('movieReleaseDate')?.errors?.['dateValidator']" class="text-red-500">Movie release date is invalid!</p>
+                  </ng-container>
                 </div>
             </div>
 
+            <!-- Movie director -->
             <div class="md:flex mb-6 w-full items-center">
                 <div class="w-[10rem]">
-                  <label class="block text-gray-300 font-bold mb-1 md:mb-0 pr-4" for="inline-full-name">
+                  <label class="block text-gray-300 font-bold mb-1 md:mb-0 pr-4" for="movieDirector">
                     Director Name
                   </label>
                 </div>
                 <div class="w-full">
-                  <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-indigo-500" id="inline-full-name" required type="text">
-                  <p *ngIf="" class="text-red-500"></p>
+                  <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-indigo-500" type="text" name="movieDirector" id="movieDirector" placeholder="Movie director..." formControlName="movieDirector">
+                  <ng-container *ngIf="form.get('movieDirector')?.touched">
+                    <p *ngIf="form.get('movieDirector')?.errors?.['required']" class="text-red-500">Movie director is required!</p>
+                  </ng-container>
                 </div>
             </div>
 
+            <!-- Movie length -->
             <div class="md:flex mb-6 w-full items-center">
                 <div class="w-[10rem]">
-                  <label class="block text-gray-300 font-bold mb-1 md:mb-0 pr-4" for="inline-full-name">
-                    Number
+                  <label class="block text-gray-300 font-bold mb-1 md:mb-0 pr-4" for="movieLength">
+                    Length
                   </label>
                 </div>
                 <div class="w-full">
-                  <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-indigo-500" id="inline-full-name" required type="number">
-                  <p *ngIf="" class="text-red-500"></p>
+                  <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-indigo-500" type="number" pattern="[0-9]*" name="movieLength" id="movieLength" placeholder="Movie length in minutes..." formControlName="movieLength">
+                  <ng-container *ngIf="form.get('movieLength')?.touched">
+                    <p *ngIf="form.get('movieLength')?.errors?.['required']" class="text-red-500">Movie length is required!</p>
+                    <p *ngIf="form.get('movieLength')?.errors?.['pattern']" class="text-red-500">Movie length is invalid!</p>
+                  </ng-container>
                 </div>
             </div>
             

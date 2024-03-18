@@ -6,27 +6,29 @@
             <div class="flex-shrink-0">
               <a class="text-indigo-500 font-bold italic text-2xl" routerLink="/home"><i class="fa-solid fa-film"></i> Cinemania</a>
             </div>
-            <div class="hidden md:block">
+            <div class="hidden lg:block">
               <div class="ml-10 flex items-baseline space-x-4">
-                <a class="text-gray-300 hover:bg-gray-700 hover:text-white !rounded-md !px-3 !py-2 !text-sm !font-medium" routerLink="/movies" routerLinkActive="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"  ariaCurrentWhenActive="page">Movies</a>
-                <a class="text-gray-300 hover:bg-gray-700 hover:text-white !rounded-md !px-3 !py-2 !text-sm !font-medium" routerLink="/about" routerLinkActive="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" ariaCurrentWhenActive="page">About Us</a>
-                <a class="text-gray-300 hover:bg-gray-700 hover:text-white !rounded-md !px-3 !py-2 !text-sm !font-medium" routerLink="/contacts" routerLinkActive="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" ariaCurrentWhenActive="page">Contacts</a>
+                <a class="text-gray-300 hover:bg-gray-700 hover:text-white !rounded !px-3 !py-2 !text-sm !font-medium" routerLink="/movies" routerLinkActive="bg-gray-900 text-white rounded px-3 py-2 text-sm font-medium"  ariaCurrentWhenActive="page">Movies</a>
+                <a class="text-gray-300 hover:bg-gray-700 hover:text-white !rounded !px-3 !py-2 !text-sm !font-medium" routerLink="/about" routerLinkActive="bg-gray-900 text-white rounded px-3 py-2 text-sm font-medium" ariaCurrentWhenActive="page">About Us</a>
+                <a class="text-gray-300 hover:bg-gray-700 hover:text-white !rounded !px-3 !py-2 !text-sm !font-medium" routerLink="/contacts" routerLinkActive="bg-gray-900 text-white rounded px-3 py-2 text-sm font-medium" ariaCurrentWhenActive="page">Contacts</a>
               </div>
             </div>
           </div>
-          <div class="hidden md:block">
-            <div class="ml-4 flex items-center md:ml-6">
+          <div class="hidden lg:block">
+            <div class="ml-4 flex items-center lg:ml-6">
               <div class="relative ml-3">
-                    <div>
-                        <a class="text-gray-300 hover:bg-gray-700 hover:text-white !rounded-md !px-3 !py-2 !text-sm !font-medium" routerLink="/profile" routerLinkActive="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" ariaCurrentWhenActive="page"><i class="fa-regular fa-user"></i>&nbsp;Username</a>
-                        <a class="text-gray-300 hover:bg-gray-700 hover:text-white !rounded-md !px-3 !py-2 !text-sm !font-medium" routerLink="/admin-panel" routerLinkActive="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" ariaCurrentWhenActive="page"><i class="fa-solid fa-gear"></i>&nbsp;Admin Panel</a>
+                    <div class="flex gap-2">
+                        <a class="text-gray-300 hover:bg-gray-700 hover:text-white !rounded !px-3 !py-2 !text-sm !font-medium" routerLink="/profile" routerLinkActive="bg-gray-900 text-white rounded px-3 py-2 text-sm font-medium" ariaCurrentWhenActive="page"><i class="fa-regular fa-user"></i>&nbsp;Username</a>
+                        <a class="text-gray-300 hover:bg-gray-700 hover:text-white !rounded !px-3 !py-2 !text-sm !font-medium" routerLink="/admin-panel" routerLinkActive="bg-gray-900 text-white rounded px-3 py-2 text-sm font-medium" ariaCurrentWhenActive="page"><i class="fa-solid fa-gears"></i>&nbsp;Admin Panel</a>
+                        <a class="text-gray-300 hover:bg-gray-700 hover:text-white !rounded !px-3 !py-2 !text-sm !font-medium" routerLink="/user/signin" routerLinkActive="bg-gray-900 text-white rounded px-3 py-2 text-sm font-medium" ariaCurrentWhenActive="page"><i class="fa-solid fa-arrow-right-to-bracket"></i>&nbsp;Sign in</a>
+                        <a class="text-gray-300 hover:bg-gray-700 hover:text-white !rounded !px-3 !py-2 !text-sm !font-medium" routerLink="/logout" routerLinkActive="bg-gray-900 text-white rounded px-3 py-2 text-sm font-medium" ariaCurrentWhenActive="page"><i class="fa-solid fa-arrow-right-from-bracket"></i>&nbsp;Logout</a>
                     </div>
               </div>
             </div>
           </div>
           
-          <div class="-mr-2 flex md:hidden">
-            <button (click)="mobileMenuClick()" type="button" class="relative inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white" aria-controls="mobile-menu" aria-expanded="false">
+          <div class="-mr-2 flex lg:hidden">
+            <button (click)="mobileMenuClick()" type="button" class="relative inline-flex items-center justify-center rounded bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white" aria-controls="mobile-menu" aria-expanded="false">
               <span class="absolute -inset-0.5"></span>
               <span class="sr-only">Open main menu</span>
               <i class="fa-solid fa-bars"></i>
@@ -37,9 +39,9 @@
   
       <div [classList]="mobileMenuStyles" id="mobile-menu">
         <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
-            <a class="text-gray-300 hover:bg-gray-700 hover:text-white !block !rounded-md !px-3 !py-2 !text-base !font-medium" routerLink="/movies" routerLinkActive="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" ariaCurrentWhenActive="page">Movies</a>
-            <a class="text-gray-300 hover:bg-gray-700 hover:text-white !block !rounded-md !px-3 !py-2 !text-base !font-medium" routerLink="/about"  routerLinkActive="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" ariaCurrentWhenActive="page">About Us</a>
-            <a class="text-gray-300 hover:bg-gray-700 hover:text-white !block !rounded-md !px-3 !py-2 !text-base !font-medium" routerLink="/contacts"  routerLinkActive="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" ariaCurrentWhenActive="page">Contacts</a>
+            <a class="text-gray-300 hover:bg-gray-700 hover:text-white !block !rounded !px-3 !py-2 !text-base !font-medium" routerLink="/movies" routerLinkActive="bg-gray-900 text-white block rounded px-3 py-2 text-base font-medium" ariaCurrentWhenActive="page">Movies</a>
+            <a class="text-gray-300 hover:bg-gray-700 hover:text-white !block !rounded !px-3 !py-2 !text-base !font-medium" routerLink="/about"  routerLinkActive="bg-gray-900 text-white block rounded px-3 py-2 text-base font-medium" ariaCurrentWhenActive="page">About Us</a>
+            <a class="text-gray-300 hover:bg-gray-700 hover:text-white !block !rounded !px-3 !py-2 !text-base !font-medium" routerLink="/contacts"  routerLinkActive="bg-gray-900 text-white block rounded px-3 py-2 text-base font-medium" ariaCurrentWhenActive="page">Contacts</a>
         </div>
         <div class="border-t border-gray-700 pb-3 pt-4">
             <div class="flex items-center px-5">
@@ -52,8 +54,8 @@
                 </div>
             </div>
             <div class="mt-3 space-y-1 px-2">
-                <a href="/profile" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Your Profile</a>
-                <a href="/sign-out" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Sign out</a>
+                <a href="/profile" class="block rounded px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Your Profile</a>
+                <a href="/sign-out" class="block rounded px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Sign out</a>
             </div>
         </div>
       </div>

@@ -12,6 +12,7 @@ import { AboutComponent } from './about/about.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { HomeCardComponent } from './home/home-card/home-card.component';
 import { AdminPanelModule } from './main/admin-panel/admin-panel.module';
+import { UserModule } from './main/profile/user.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { AdminPanelModule } from './main/admin-panel/admin-panel.module';
     SharedModule,
     MovieModule,
     AdminPanelModule,
+    UserModule,
     HttpClientModule,
     AppRoutingModule,
   ],

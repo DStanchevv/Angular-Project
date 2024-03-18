@@ -11,7 +11,7 @@ export class FilterSearchComponent {
   @Input('movies') movies = [] as Movie[];
   @Output() updatedMovies = new EventEmitter<Movie[]>();
   searchTerm: string = '';
-  dropdownStyles = "absolute hidden z-10 visible bg-gray-700 divide-y divide-white-100 rounded-md w-44";
+  dropdownStyles = "absolute hidden z-10 visible bg-gray-700 divide-y divide-white-100 rounded w-44";
   
   onSearchChange() {
     this.movieService.searchMoviesByName(this.searchTerm).subscribe((movies) => {
@@ -21,7 +21,7 @@ export class FilterSearchComponent {
   }
 
   filterButtonOnHover() {
-    this.dropdownStyles = "absolute z-10 visible bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700";
+    this.dropdownStyles = "absolute z-10 visible bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700";
   }
 
   relDateAsc() {
@@ -53,6 +53,6 @@ export class FilterSearchComponent {
   }
 
   filterButtonOnHoverOut() {
-    this.dropdownStyles = "absolute z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700";
+    this.dropdownStyles = "absolute z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700";
   }
 }

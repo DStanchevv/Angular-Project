@@ -1,0 +1,42 @@
+<main class="flex flex-col items-center w-full">
+    <div class="px-4 sm:px-6 lg:px-8 w-full">
+        <section class="w-full">
+            <div class="flex flex-col items-center justify-center mx-auto md:h-screen">
+                <div class="w-full bg-gray-800 rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
+                    <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                        <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-300 md:text-2xl">
+                            Sign in to your account
+                        </h1>
+                        <form class="space-y-4 md:space-y-6" [formGroup]="form" (ngSubmit)="signin()">
+                            <div>
+                                <label for="email" class="block mb-2 text-sm font-medium text-gray-300">Your email</label>
+                                <input type="email" name="email" id="email" placeholder="name@company.com" formControlName="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                                <ng-container *ngIf="form.get('email')?.touched">
+                                    <p class="text-red-500" *ngIf="form.get('email')?.errors?.['required']">
+                                        Email is required!
+                                    </p>
+                                    <p class="text-red-500" *ngIf="form.get('email')?.errors?.['emailValidator']">Email is not valid!</p>
+                                </ng-container>
+                            </div>
+                            <div>
+                                <label for="password" class="block mb-2 text-sm font-medium text-gray-300">Password</label>
+                                <input type="password" name="password" id="password" placeholder="••••••••" formControlName="password" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                                <ng-container *ngIf="form.get('password')?.touched">
+                                    <p class="text-red-500" *ngIf="form.get('password')?.errors?.['required']">
+                                        Password is required!
+                                    </p>
+                                </ng-container>
+                            </div>
+                            <button class="shadow bg-indigo-500 hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded w-[10rem]" type="button">
+                                Sign in
+                            </button>
+                            <p class="text-sm font-light text-gray-300">
+                                Don’t have an account yet? <a routerLink="/user/register" class="font-medium text-gray-300 hover:underline">Sign up</a>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+          </section>
+    </div>
+</main>

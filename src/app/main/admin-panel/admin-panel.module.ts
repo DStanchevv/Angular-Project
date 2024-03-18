@@ -5,6 +5,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MovieEditPageComponent } from './movie-edit-page/movie-edit-page.component';
 import { MovieAddPageComponent } from './movie-add-page/movie-add-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -18,6 +19,7 @@ import { MovieAddPageComponent } from './movie-add-page/movie-add-page.component
     CommonModule,
     SharedModule,
     AdminRoutingModule,
+    ReactiveFormsModule,
   ]
 })
 export class AdminPanelModule { 
