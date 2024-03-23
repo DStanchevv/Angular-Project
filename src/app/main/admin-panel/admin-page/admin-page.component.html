@@ -19,7 +19,7 @@
                   </tr>
                 </thead>
                 
-                <tbody *ngFor="let movie of movies" class="max-sm:text-xs">
+                <tbody *ngFor="let movie of movies | paginate: { itemsPerPage: perPage, currentPage: currPage }" class="max-sm:text-xs">
                   <tr>
                     <td class="px-2 border border-gray-300 py-2">{{movie.name}}</td>
                     <td class="px-2 border border-gray-300 py-2"><span class="line-clamp-3">{{movie.description}}</span></td>
@@ -36,11 +36,16 @@
                 </tbody>
 
               </table>
-        </div>
-        <div class="pt-6">
-            <a routerLink="add-movie" class="shadow bg-indigo-500 hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded w-[12rem] text-center" type="button">
-                <i class="fa-regular fa-square-plus"></i> Add New Movie
-            </a>
+            </div>
+          <div class="flex flex-row-reverse pt-6 max-sm:flex-col max-sm:flex-col-reverse">
+            <div *ngIf="!isLoading" class="flex items-center justify-center w-full pt-5">
+              <pagination-controls (pageChange)="currPage = $event" [responsive]="true" [autoHide]="true" nextLabel="" previousLabel=""></pagination-controls>
+            </div>
+            <div>
+              <a routerLink="add-movie" class="shadow bg-indigo-500 hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded w-[12rem] text-center" type="button">
+                  <i class="fa-regular fa-square-plus"></i> Add New Movie
+              </a>
+            </div>
         </div>
     </div>
 </main>

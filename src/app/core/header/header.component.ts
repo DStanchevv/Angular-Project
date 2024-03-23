@@ -1,13 +1,24 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html'
 })
 export class HeaderComponent {
+    constructor(private userService: UserService, private router: Router) {}
+
     profileMenuClasses: String = "hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded bg-white py-1 shadow-lg transition ease-out duration-100";
     profileButtonClasses: String = "flex items-center justify-center w-10 h-10 rounded relative flex max-w-xs items-center bg-gray-800 text-sm hover:bg-gray-700 hover:text-white"
     mobileMenuStyles: String = "md:hidden hidden"
+    
+    get isLoggedIn(): boolean {
+        return this.userService.isLogged;
+    }
+    get username(): string {
+        return this.userService.user?.email.split('@')[0] || '';
+    }
     
     mobileMenuClick() {
         let menuStyles = this.mobileMenuStyles.split(" ");
@@ -42,5 +53,12 @@ export class HeaderComponent {
             profileButtonClasses.splice(-5);
             this.profileButtonClasses = profileButtonClasses.join(" ");
         }
+    }
+
+    logout() {
+        this.userService.logout().subscribe({
+            next: () => this.router.navigate(['/home']),
+            error: () => this.router.navigate(['/home'])
+        });
     }
 }

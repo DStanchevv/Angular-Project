@@ -1,13 +1,19 @@
 <main class="flex flex-col items-center">
-    <div *ngIf="isLoading" class="flex w-full h-[100vh] justify-center items-center" >
+    <div *ngIf="isLoading" class="flex w-full min-h-full justify-center items-center" >
         <app-loader></app-loader>
     </div>
     <div *ngIf="!isLoading" class="container px-4 sm:px-6 lg:px-8">
         <app-filter-search [movies]="movies" (updatedMovies)="handleUpdatedMovies($event)"/>
     </div>
-    <div *ngIf="!isLoading" class="container grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1 gap-5 px-4 sm:px-6 lg:px-8">
-        <div *ngFor="let movie of movies">
+    <div *ngIf="!isLoading && movies.length > 0" class="container grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1 gap-5 px-4 sm:px-6 lg:px-8">
+        <div *ngFor="let movie of movies | paginate: { itemsPerPage: perPage, currentPage: currPage }">
             <app-movie-card [movie]="movie"></app-movie-card>
         </div>
+    </div>
+    <div *ngIf="!isLoading && movies.length > 0" class="flex items-center justify-center w-full pt-5">
+        <pagination-controls (pageChange)="currPage = $event" [responsive]="true" [autoHide]="true" nextLabel="" previousLabel=""></pagination-controls>
+    </div>
+    <div *ngIf="!isLoading && movies.length === 0"  class="flex w-full h-[100vh] justify-center items-center text-4xl text-gray-300" >
+        No Movies Found
     </div>
 </main>

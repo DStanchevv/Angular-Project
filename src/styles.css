@@ -6,3 +6,35 @@
 .img-div {
     @apply bg-gray-200;
 }
+.ngx-pagination {
+    @apply !flex !items-center !gap-2 !text-xl;
+}
+.ngx-pagination .disabled {
+    @apply !hidden;
+}
+.ngx-pagination a {
+    @apply !flex !items-center !justify-center !text-gray-300 !text-center !rounded-full !w-10 !h-10;
+}
+.ngx-pagination a:hover {
+    @apply !bg-indigo-500
+}
+.ngx-pagination .current {
+    @apply !flex !items-center !justify-center !bg-indigo-500 !text-gray-300 !rounded-full !w-10 !h-10 max-[600px]:!hidden;
+}
+.ngx-pagination .small-screen {
+    @apply !text-gray-300 rounded-full;
+}
+
+.pagination-next {
+    @apply !flex !items-center !justify-center !m-0;
+}
+.ngx-pagination .pagination-next a:after {
+    @apply !flex !items-center !justify-center !m-0 !text-sm;
+    font: var(--fa-font-solid);
+    content: "\f054" !important;
+}
+.ngx-pagination .pagination-previous a:before {
+    @apply !flex !items-center !justify-center !m-0 !text-sm;
+    font: var(--fa-font-solid);
+    content: "\f053" !important;
+}

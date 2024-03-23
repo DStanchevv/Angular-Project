@@ -6,6 +6,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { MovieEditPageComponent } from './movie-edit-page/movie-edit-page.component';
 import { MovieAddPageComponent } from './movie-add-page/movie-add-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -20,6 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     SharedModule,
     AdminRoutingModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
   ]
 })
 export class AdminPanelModule { 

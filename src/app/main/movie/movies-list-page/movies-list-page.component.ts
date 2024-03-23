@@ -13,14 +13,19 @@ export class MoviesListPageComponent implements OnInit{
   dropdownStyles = "absolute hidden z-10 visible bg-gray-700 divide-y divide-white-100 rounded w-44";
   movies: Movie[] = [];
   isLoading: boolean = true;
+  currPage: number = 1;
+  perPage: number = 2;
+  totalMovies: number = 0;
+  anyMovieFound: boolean = false;
 
   handleUpdatedMovies(updatedMovies: Movie[]) {
     this.movies = updatedMovies;
   }
 
   ngOnInit(): void {
-    this.movieService.getMoviesByDateAsc().subscribe((movies) => {
+    this.movieService.getMoviesByDateDesc().subscribe((movies) => {
       this.movies = movies;
+      this.totalMovies = this.movies.length;
     })
 
     setTimeout(() => {

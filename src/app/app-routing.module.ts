@@ -7,6 +7,7 @@ import { ContactsComponent } from './contacts/contacts.component';
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: '/home'},
   {path: 'home', component: HomeComponent},
+  {path: 'auth', loadChildren: () => import('./main/profile/user.module').then(m => m.UserModule)},
   {path: 'about', component: AboutComponent},
   {path: 'contacts', component: ContactsComponent},
   {path: '**', redirectTo: '/home'},

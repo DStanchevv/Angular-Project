@@ -16,7 +16,7 @@ export class FilterSearchComponent {
   onSearchChange() {
     this.movieService.searchMoviesByName(this.searchTerm).subscribe((movies) => {
       this.movies = movies;
-      this.updatedMovies.emit(movies);
+      this.updatedMovies.emit(this.movies);
     })
   }
 

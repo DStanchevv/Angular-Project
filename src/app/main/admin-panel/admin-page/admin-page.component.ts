@@ -11,6 +11,9 @@ export class AdminPageComponent {
 
   movies: Movie[] = [];
   isLoading: boolean = true;
+  currPage: number = 1;
+  perPage: number = 2;
+  totalMovies: number = 0;
 
   handleUpdatedMovies(updatedMovies: Movie[]) {
     this.movies = updatedMovies;

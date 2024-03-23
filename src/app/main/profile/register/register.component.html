@@ -7,7 +7,7 @@
                         <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-300 md:text-2xl">
                             Register to become a memeber of Cinemania
                         </h1>
-                        <form class="space-y-4 md:space-y-6" [formGroup]="form" (ngSubmit)="signin()">
+                        <form class="space-y-4 md:space-y-6" [formGroup]="form" (ngSubmit)="register()">
                             <div>
                                 <label for="email" class="block mb-2 text-sm font-medium text-gray-300">Your email</label>
                                 <input type="email" name="email" id="email" placeholder="name@company.com" formControlName="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
@@ -44,12 +44,12 @@
                                 </div>
                             </ng-container>
 
-                            <button class="shadow bg-indigo-500 hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded w-[10rem]" type="button">
+                            <button class="shadow bg-indigo-500 hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded w-[10rem]" type="submit">
                                 Register
                             </button>
                             
                             <p class="text-sm font-light text-gray-300">
-                                Already have an account? <a routerLink="/user/signin" class="font-medium text-gray-300 hover:underline">Sign in</a>
+                                Already have an account? <a routerLink="/auth/signin" class="font-medium text-gray-300 hover:underline">Sign in</a>
                             </p>
                         </form>
                     </div>

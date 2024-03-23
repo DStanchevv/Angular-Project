@@ -13,6 +13,8 @@ import { ContactsComponent } from './contacts/contacts.component';
 import { HomeCardComponent } from './home/home-card/home-card.component';
 import { AdminPanelModule } from './main/admin-panel/admin-panel.module';
 import { UserModule } from './main/profile/user.module';
+import { appInterceptorProvider } from './app.interceptor';
+import { AuthenticationComponent } from './authentication/authentication.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { UserModule } from './main/profile/user.module';
     AboutComponent,
     ContactsComponent,
     HomeCardComponent,
+    AuthenticationComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,11 +31,10 @@ import { UserModule } from './main/profile/user.module';
     SharedModule,
     MovieModule,
     AdminPanelModule,
-    UserModule,
     HttpClientModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [appInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
