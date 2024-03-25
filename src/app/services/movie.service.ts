@@ -10,43 +10,30 @@ export class MovieService {
     constructor(private http: HttpClient) { }
 
     getMoviesByDateAsc() {
-        const { apiUrl } = environment
-
-        return this.http.get<Movie[]>(`${apiUrl}/Movie/order-movie-by-release-date-asc`)
+        return this.http.get<Movie[]>(`/api/Movie/order-movie-by-release-date-asc`)
     }
 
     getMoviesByNameAsc() {
-        const { apiUrl } = environment
-
-        return this.http.get<Movie[]>(`${apiUrl}/Movie/order-movie-by-name-asc`)
+        return this.http.get<Movie[]>(`/api/Movie/order-movie-by-name-asc`)
     }
 
     getMoviesByNameDesc() {
-        const { apiUrl } = environment
-
-        return this.http.get<Movie[]>(`${apiUrl}/Movie/order-movie-by-name-desc`)
+        return this.http.get<Movie[]>(`/api/Movie/order-movie-by-name-desc`)
     }
 
     searchMoviesByName(name: string) {
-        const { apiUrl } = environment
-
-        return this.http.get<Movie[]>(`${apiUrl}/Movie/search-movie-by-name?movieName=${name}`)
+        return this.http.get<Movie[]>(`/api/Movie/search-movie-by-name?movieName=${name}`)
     }
 
     getMoviesByDateDesc() {
-        const { apiUrl } = environment
-
-        return this.http.get<Movie[]>(`${apiUrl}/Movie/order-movie-by-release-date-desc`)
+        return this.http.get<Movie[]>(`/api/Movie/order-movie-by-release-date-desc`)
     }
 
     getAllMovies(page: number, perPage: number) {
-        const { apiUrl } = environment
-
-        return this.http.get<Movie[]>(`${apiUrl}/Movie/get-all-movies?page=${page}&perPage=${perPage}`)
+        return this.http.get<Movie[]>(`/api/Movie/get-all-movies?page=${page}&perPage=${perPage}`)
     }
 
     getMovieById(id: string) {
-        const { apiUrl } = environment
-        return this.http.get<Movie>(`${apiUrl}/Movie/get-movie/${id}`)
+        return this.http.get<Movie>(`/api/Movie/get-movie/${id}`)
     }
 }

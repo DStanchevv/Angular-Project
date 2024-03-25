@@ -12,9 +12,8 @@ import { AboutComponent } from './about/about.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { HomeCardComponent } from './home/home-card/home-card.component';
 import { AdminPanelModule } from './main/admin-panel/admin-panel.module';
-import { UserModule } from './main/profile/user.module';
 import { appInterceptorProvider } from './app.interceptor';
-import { AuthenticationComponent } from './authentication/authentication.component';
+import { WrapperComponent } from './wrapper/wrapper.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +22,7 @@ import { AuthenticationComponent } from './authentication/authentication.compone
     AboutComponent,
     ContactsComponent,
     HomeCardComponent,
-    AuthenticationComponent,
+    WrapperComponent,
   ],
   imports: [
     BrowserModule,

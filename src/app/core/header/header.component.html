@@ -19,8 +19,8 @@
               <div class="relative ml-3">
                     <div class="flex gap-2">
                         <a *ngIf="isLoggedIn" class="text-gray-300 hover:bg-gray-700 hover:text-white !rounded !px-3 !py-2 !text-sm !font-medium" routerLink="/profile" routerLinkActive="bg-gray-900 text-white rounded px-3 py-2 text-sm font-medium" ariaCurrentWhenActive="page"><i class="fa-regular fa-user"></i>&nbsp;{{ username }}</a>
-                        <a *ngIf="isLoggedIn" class="text-gray-300 hover:bg-gray-700 hover:text-white !rounded !px-3 !py-2 !text-sm !font-medium" routerLink="/admin-panel" routerLinkActive="bg-gray-900 text-white rounded px-3 py-2 text-sm font-medium" ariaCurrentWhenActive="page"><i class="fa-solid fa-gears"></i>&nbsp;Admin Panel</a>
-                        <a class="text-gray-300 hover:bg-gray-700 hover:text-white !rounded !px-3 !py-2 !text-sm !font-medium" routerLink="/auth/signin" routerLinkActive="bg-gray-900 text-white rounded px-3 py-2 text-sm font-medium" ariaCurrentWhenActive="page"><i class="fa-solid fa-arrow-right-to-bracket"></i>&nbsp;Sign in</a>
+                        <a *ngIf="isLoggedIn && role !='User'" class="text-gray-300 hover:bg-gray-700 hover:text-white !rounded !px-3 !py-2 !text-sm !font-medium" routerLink="/admin-panel" routerLinkActive="bg-gray-900 text-white rounded px-3 py-2 text-sm font-medium" ariaCurrentWhenActive="page"><i class="fa-solid fa-gears"></i>&nbsp;Admin Panel</a>
+                        <a *ngIf="!isLoggedIn" class="text-gray-300 hover:bg-gray-700 hover:text-white !rounded !px-3 !py-2 !text-sm !font-medium" routerLink="/auth/signin" routerLinkActive="bg-gray-900 text-white rounded px-3 py-2 text-sm font-medium" ariaCurrentWhenActive="page"><i class="fa-solid fa-arrow-right-to-bracket"></i>&nbsp;Sign in</a>
                         <button *ngIf="isLoggedIn" (click)="logout()" class="text-gray-300 hover:bg-gray-700 hover:text-white !rounded !px-3 !py-2 !text-sm !font-medium"><i class="fa-solid fa-arrow-right-from-bracket"></i>&nbsp;Logout</button>
                     </div>
               </div>

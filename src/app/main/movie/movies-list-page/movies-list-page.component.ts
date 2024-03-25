@@ -28,8 +28,6 @@ export class MoviesListPageComponent implements OnInit{
       this.totalMovies = this.movies.length;
     })
 
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 500)
+    this.isLoading = false;
   }
 }

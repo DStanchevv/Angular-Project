@@ -24,8 +24,6 @@ export class AdminPageComponent {
       this.movies = movies;
     })
 
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 500)
+    this.isLoading = false;
   }
 }

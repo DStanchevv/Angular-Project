@@ -1,15 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { MovieService } from 'src/app/services/movie.service';
 import { Movie } from 'src/app/services/types/movie';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-single-movie-page',
   templateUrl: './single-movie-page.component.html',
 })
-export class SingleMoviePageComponent implements OnInit{
-  constructor(private movieService: MovieService, private activeRoute: ActivatedRoute) {}
+export class SingleMoviePageComponent implements OnInit, OnDestroy{
+  isLoggedIn!: boolean;
+    private authSubscription: Subscription;
+  constructor(private movieService: MovieService, private userService:UserService, private activeRoute: ActivatedRoute) {
+    this.authSubscription = this.userService.isAuthenticated.subscribe(
+      authenticated => {
+        this.isLoggedIn = authenticated;
+      }
+    );
+  }
 
   movie = {} as Movie;
   images: Array<object> = []
@@ -58,9 +68,10 @@ export class SingleMoviePageComponent implements OnInit{
       })
     })
     
+    this.isLoading = false;
+  }
 
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 500)
+  ngOnDestroy(): void {
+    this.authSubscription.unsubscribe();
   }
 }

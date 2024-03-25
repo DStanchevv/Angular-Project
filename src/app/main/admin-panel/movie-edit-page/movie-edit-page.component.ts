@@ -41,7 +41,6 @@ export class MovieEditPageComponent implements OnInit{
           }
         }
 
-        console.log(this.movie.name)
         this.form = this.fb.group({
           movieName: [this.movie.name, [Validators.required]],
           movieDescription: [this.movie.description, [Validators.required]],
@@ -49,11 +48,8 @@ export class MovieEditPageComponent implements OnInit{
           movieDirector: [this.movie.directorName, [Validators.required]],
           movieLength: [this.movie.length, [Validators.required]]
         });
-        console.log(this.form)
 
-        setTimeout(() => {
-          this.isLoading = false;
-        }, 500)
+        this.isLoading = false;
       })
     })
   }
