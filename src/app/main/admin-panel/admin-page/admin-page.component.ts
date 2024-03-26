@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { MovieService } from 'src/app/services/movie.service';
 import { Movie } from 'src/app/services/types/movie';
 
@@ -7,7 +8,7 @@ import { Movie } from 'src/app/services/types/movie';
   templateUrl: './admin-page.component.html',
 })
 export class AdminPageComponent {
-  constructor(private movieService: MovieService) {}
+  constructor(private movieService: MovieService, private router: Router) {}
 
   movies: Movie[] = [];
   isLoading: boolean = true;
@@ -17,6 +18,21 @@ export class AdminPageComponent {
 
   handleUpdatedMovies(updatedMovies: Movie[]) {
     this.movies = updatedMovies;
+  }
+
+  deleteMovie($event: any) {
+    console.log($event.target.id)
+    this.movieService.deleteMovie($event.target.id).subscribe({
+      next: (res) => {
+        this.movieService.getMoviesByDateAsc().subscribe((movies) => {
+          this.movies = movies;
+        })
+        this.router.navigate(['/admin-panel']);
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
   }
 
   ngOnInit(): void {

@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
-import { environment } from "../environments/environment";
 import { Movie } from "./types/movie";
 
 @Injectable({
@@ -35,5 +34,14 @@ export class MovieService {
 
     getMovieById(id: string) {
         return this.http.get<Movie>(`/api/Movie/get-movie/${id}`)
+    }
+    addMovie(formData: FormData) {
+        return this.http.post<Movie>('/api/Movie/create-movie', formData);
+    }
+    updateMovie(formData: FormData, id: string) {
+        return this.http.put<Movie>(`/api/Movie/update-movie/${id}`, formData);
+    }
+    deleteMovie(id: string) {
+        return this.http.delete<Movie>(`/api/Movie/delete-movie/${id}`);
     }
 }

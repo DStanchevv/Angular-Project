@@ -28,8 +28,8 @@
                     <td class="px-2 border border-gray-300 py-2">{{movie.length}}</td>
                     <td class="px-2 border border-gray-300 py-2">
                         <span class="flex items-center justify-center gap-4 max-sm:flex-col">
-                            <a [routerLink]="movie.id" class="hover:text-white hover:cursor-pointer"><i class="fa-solid fa-pen-to-square"></i> </a> 
-                            <a [routerLink]="movie.id" class="hover:text-white hover:cursor-pointer"><i class="fa-solid fa-trash"></i></a>
+                            <button [routerLink]="movie.id" class="hover:text-white hover:cursor-pointer"><i class="fa-solid fa-pen-to-square"></i> </button> 
+                            <button id={{movie.id}} (click)="deleteMovie($event)" class="hover:text-white hover:cursor-pointer"><i id={{movie.id}} class="fa-solid fa-trash"></i></button>
                         </span>
                     </td>
                   </tr>
