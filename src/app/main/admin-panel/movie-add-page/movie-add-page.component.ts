@@ -58,7 +58,7 @@ export class MovieAddPageComponent {
           this.router.navigate(['/admin-panel']);
         },
         error: (err) => {
-          this.showErrMessage("Invalid data!")
+          this.showErrMessage("Invalid data or no images added!")
         }
       });
     }
