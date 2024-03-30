@@ -1,3 +1,9 @@
+<div *ngIf="succMessage.trim().length > 0 || errMessage.trim().length > 0" class="fixed w-full h-full z-50">
+    <div class="bottom-0 left-0 m-5">
+        <p *ngIf="succMessage.trim().length > 0" class="text-white bg-green-500 p-5 text-lg">{{succMessage}}</p>
+        <p *ngIf="errMessage.trim().length > 0" class="test-white bg-red-500 p-5 text-lg">{{errMessage}}</p>
+    </div>
+</div>
 <div class="flex flex-col items-center justify-center" [ngClass]="ratingFormOpenedClass">
     <div *ngIf="isLoading" class="flex w-full h-[100vh] justify-center items-center" >
         <app-loader></app-loader>
@@ -17,13 +23,13 @@
                 <p><i>Length:</i> {{movie.length}} minutes</p>
                 <div class="flex items-center gap-3">
                     <div class="flex items-center gap-1">
-                        <p><i>Rating:</i> 7.8</p>
+                        <p *ngIf="movie.rating"><i>Rating:</i> {{movie.rating}}</p>
+                        <p *ngIf="!movie.rating"><i>Rating:</i> No rating yet</p>
                         <i class="fa-solid fa-star text-md"></i>
                     </div>
                     <button (click)="showAndCloseRatingForm()" class="shadow bg-indigo-500 hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white text-sm font-bold py-1 px-3 rounded w-[8rem] text-center">
                         Rate
                     </button>
-                </div>
             </div>
             
             <p>{{movie.description}}</p>
@@ -34,70 +40,63 @@
         
         <div *ngIf="commentsOpened" class="w-full">
             <div *ngIf="isLoggedIn" class="flex flex-col gap-3 text-lg text-gray-300 p-3">
-                <div class="flex items-center gap-3">
-                    <div class="flex items-center justify-center bg-gray-300 w-10 h-10 rounded-full">
-                        <i class="fa-regular fa-user text-black"></i>
-                    </div>
-                    <p>Your Username</p>
-                </div>
                 <form #commentForm="ngForm" (ngSubmit)="submitComment(commentForm)">
                     <fieldset>     
                         <div class="w-full">
-                            <textarea class="w-2/3 bg-gray-200 appearance-none border-2 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-indigo-500" rows="5" type="text" name="movieDescription" id="movieDescription" required placeholder="Movie description..." ngModel #inputComment="ngModel"></textarea>
+                            <textarea class="w-2/3 bg-gray-200 appearance-none border-2 border-gray-200 rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-indigo-500" rows="5" type="text" name="movieComment" id="movieComment" required placeholder="Movie comment..." ngModel #inputComment="ngModel"></textarea>
                             <ng-container  *ngIf="inputComment.touched">
                                 <p class="text-red-500" *ngIf="inputComment.errors?.['required']">
                                     Field is required!
                                 </p>
                             </ng-container>
                         </div>
-                        <button class="shadow bg-indigo-500 hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white text-sm font-bold py-1 px-3 rounded w-[8rem] text-center">
+                        <button class="shadow bg-indigo-500 hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white text-sm font-bold py-1 px-3 rounded w-[8rem] text-center" type="submit">
                             Comment
                         </button>
                     </fieldset>
                 </form>
             </div>
-            <div class="flex items-center gap-3 text-lg text-gray-300 p-3">
+            <div *ngFor="let comment of movie.comments | paginate: { itemsPerPage: perPage, currentPage: currPage }" class="flex items-center gap-3 text-lg text-gray-300 p-3">
                 <div class="flex items-center justify-center bg-gray-300 w-10 h-10 rounded-full">
                     <i class="fa-regular fa-user text-black"></i>
                 </div>
                 <div>
-                    <p>Username</p>
-                    <p>That's the greatest movie of all time! Will never stop watching it!</p>
+                    <p>{{comment.split("-")[1].split("@")[0]}}</p>
+                    <p>{{comment.split("-")[2]}}</p>
+                </div>
+                <div *ngIf="role === 'Admin'">
+                    <button  (click)="deleteComment($event)"><i [id]="comment.split('-')[0]" class="fa-solid fa-trash hover:text-indigo-500"></i></button>
                 </div>
             </div>
-            <div class="flex items-center gap-3 text-lg text-gray-300 p-3">
-                <div class="flex items-center justify-center bg-gray-300 w-10 h-10 rounded-full">
-                    <i class="fa-regular fa-user text-black"></i>
-                </div>
-                <div>
-                    <p>Username 2</p>
-                    <p>Best of the best!</p>
-                </div>
+            <div *ngIf="!isLoading" class="flex items-center justify-center w-full pt-5">
+                <pagination-controls (pageChange)="currPage = $event" [responsive]="true" [autoHide]="true" nextLabel="" previousLabel=""></pagination-controls>
             </div>
         </div>
         
     </div>
-    <div *ngIf="ratingFormOpened" class="bg-gray-700 rounded absolute pointer-events-auto p-5 max-sm:top-1/4 max-sm:right-1/5">
+</div>
+<div *ngIf="ratingFormOpened" class="fixed w-full h-full 0 flex items-center justify-center">
+    <div class="bg-gray-700 flex items-center justify-center rounded fixed pointer-events-auto p-5 m-5">
         <div class="top-0 right-0 absolute">
             <button (click)="showAndCloseRatingForm()" class="text-gray-300 hover:text-white text-xl px-3 py-1 z-50"><i class="fa-solid fa-xmark"></i></button>
         </div>
-        <form class="flex flex-col gap-3 h-full items-center justify-center" #ratingForm="ngForm" (ngSubmit)="submitRating(ratingForm)">
+        <div class="flex flex-col gap-3 h-full items-center justify-center">
             <div class="text-xl text-center text-gray-300">
                 <p>RATE THIS</p>
                 <p>{{movie.name}}</p>
             </div>
             <div class="flex flex-row-reverse gap-1 items-end justify-end text-xl">
-                <button class="peer peer-hover:text-yellow-500 hover:text-yellow-500 text-white"><i class="fa-solid fa-star"></i></button>
-                <button class="peer peer-hover:text-yellow-500 hover:text-yellow-500 text-white"><i class="fa-solid fa-star"></i></button>
-                <button class="peer peer-hover:text-yellow-500 hover:text-yellow-500 text-white"><i class="fa-solid fa-star"></i></button>
-                <button class="peer peer-hover:text-yellow-500 hover:text-yellow-500 text-white"><i class="fa-solid fa-star"></i></button>
-                <button class="peer peer-hover:text-yellow-500 hover:text-yellow-500 text-white"><i class="fa-solid fa-star"></i></button>
-                <button class="peer peer-hover:text-yellow-500 hover:text-yellow-500 text-white"><i class="fa-solid fa-star"></i></button>
-                <button class="peer peer-hover:text-yellow-500 hover:text-yellow-500 text-white"><i class="fa-solid fa-star"></i></button>
-                <button class="peer peer-hover:text-yellow-500 hover:text-yellow-500 text-white"><i class="fa-solid fa-star"></i></button>
-                <button class="peer peer-hover:text-yellow-500 hover:text-yellow-500 text-white"><i class="fa-solid fa-star"></i></button>
-                <button class="peer peer-hover:text-yellow-500 hover:text-yellow-500 text-white"><i class="fa-solid fa-star"></i></button>
+                <button class="peer peer-hover:text-yellow-500 hover:text-yellow-500 text-white" (click)="submitBtnRating(10)"><i class="fa-solid fa-star"></i></button>
+                <button class="peer peer-hover:text-yellow-500 hover:text-yellow-500 text-white" (click)="submitBtnRating(9)"><i class="fa-solid fa-star"></i></button>
+                <button class="peer peer-hover:text-yellow-500 hover:text-yellow-500 text-white" (click)="submitBtnRating(8)"><i class="fa-solid fa-star"></i></button>
+                <button class="peer peer-hover:text-yellow-500 hover:text-yellow-500 text-white" (click)="submitBtnRating(7)"><i class="fa-solid fa-star"></i></button>
+                <button class="peer peer-hover:text-yellow-500 hover:text-yellow-500 text-white" (click)="submitBtnRating(6)"><i class="fa-solid fa-star"></i></button>
+                <button class="peer peer-hover:text-yellow-500 hover:text-yellow-500 text-white" (click)="submitBtnRating(5)"><i class="fa-solid fa-star"></i></button>
+                <button class="peer peer-hover:text-yellow-500 hover:text-yellow-500 text-white" (click)="submitBtnRating(4)"><i class="fa-solid fa-star"></i></button>
+                <button class="peer peer-hover:text-yellow-500 hover:text-yellow-500 text-white" (click)="submitBtnRating(3)"><i class="fa-solid fa-star"></i></button>
+                <button class="peer peer-hover:text-yellow-500 hover:text-yellow-500 text-white" (click)="submitBtnRating(2)"><i class="fa-solid fa-star"></i></button>
+                <button class="peer peer-hover:text-yellow-500 hover:text-yellow-500 text-white" (click)="submitBtnRating(1)"><i class="fa-solid fa-star"></i></button>
             </div>
-        </form>
+          </div>
     </div>
 </div>

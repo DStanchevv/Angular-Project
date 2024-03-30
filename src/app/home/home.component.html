@@ -33,7 +33,7 @@
     </div>
 
     <div *ngIf="movies.length > 0" class="container flex pb-[10px] px-4 sm:px-6 lg:px-8 mt-[30px]">
-        <h1 class="font-bold text-2xl text-gray-300">5 Latest:</h1>
+        <h1 class="font-bold text-2xl text-gray-300">4 Latest:</h1>
     </div>
     <div *ngIf="movies.length > 0" class="container grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1 gap-5 px-4 sm:px-6 lg:px-8">
         <div *ngFor="let movie of movies">
@@ -42,10 +42,10 @@
     </div>
 
     <div *ngIf="movies.length > 0" class="container flex pb-[10px] px-4 sm:px-6 lg:px-8 mt-[30px]">
-        <h1 class="font-bold text-2xl text-gray-300">5 Best Rated:</h1>
+        <h1 class="font-bold text-2xl text-gray-300">4 Best Rated:</h1>
     </div>
-    <div *ngIf="movies.length > 0" class="container grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1 gap-5 px-4 sm:px-6 lg:px-8">
-        <div *ngFor="let movie of movies">
+    <div *ngIf="ratingSortedMovies.length > 0" class="container grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1 gap-5 px-4 sm:px-6 lg:px-8">
+        <div *ngFor="let movie of ratingSortedMovies">
             <app-home-card [movie]="movie" />
         </div>
     </div>

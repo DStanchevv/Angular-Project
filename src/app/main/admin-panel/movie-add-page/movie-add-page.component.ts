@@ -1,3 +1,4 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -10,6 +11,17 @@ import { dateValidator } from 'src/app/shared/utils/date-validator';
 })
 export class MovieAddPageComponent {
   constructor(private fb: FormBuilder, private movieService: MovieService, private router: Router) {}
+
+  errMessage: string = "";
+  fileList!: FileList;
+
+  showErrMessage(message: string) {
+    this.errMessage = message;
+
+    setTimeout(() => {
+      this.errMessage = '';
+    }, 1500);
+  }
   
   form = this.fb.group({
     movieName: ['', [Validators.required]],
@@ -18,31 +30,37 @@ export class MovieAddPageComponent {
     movieDirector: ['', [Validators.required]],
     movieLength: ['', [Validators.required]],
     movieImages: [],
-  })
+  })  
+  
+  onFileInputChange(event: any) {
+    this.fileList = event.target.files;
+  }
 
   addMovie(): void {
     const formData = new FormData();
     formData.append('Name', this.form.get('movieName')?.value || '');
-    console.log(this.form.get('movieName')?.value)
     formData.append('Description', this.form.get('movieDescription')?.value || '');
     formData.append('ReleaseDate', this.form.get('movieReleaseDate')?.value || '');
     formData.append('DirectorName', this.form.get('movieDirector')?.value || '');
     formData.append('Length', this.form.get('movieLength')?.value || '');
-
-    const files = this.form.get('movieImages')?.value || [];
-    for (let i = 0; i < files.length; i++) {
-      formData.append('files', files[i]);
-      console.log(files[i]);
+    if(this.fileList) {
+      Array.from(this.fileList).forEach((file) => {
+        formData.append('files', file);
+      })
+    } else {
+      this.showErrMessage("Invalid data!")
     }
 
-    this.movieService.addMovie(formData)
-    .subscribe({
-      next: (res) => {
-        this.router.navigate(['/admin-panel']);
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    });
+    if(this.fileList) {
+      this.movieService.addMovie(formData)
+      .subscribe({
+        next: (res) => {
+          this.router.navigate(['/admin-panel']);
+        },
+        error: (err) => {
+          this.showErrMessage("Invalid data!")
+        }
+      });
+    }
   }
 }

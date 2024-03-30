@@ -5,5 +5,7 @@ export interface Movie {
     releaseDate: string,
     directorName: string,
     length: number,
-    images: string[]
+    rating: string,
+    images: string[],
+    comments: string[],
 }

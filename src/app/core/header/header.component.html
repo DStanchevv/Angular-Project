@@ -18,7 +18,7 @@
             <div class="ml-4 flex items-center lg:ml-6">
               <div class="relative ml-3">
                     <div class="flex gap-2">
-                        <a *ngIf="isLoggedIn" class="text-gray-300 hover:bg-gray-700 hover:text-white !rounded !px-3 !py-2 !text-sm !font-medium" routerLink="/profile" routerLinkActive="bg-gray-900 text-white rounded px-3 py-2 text-sm font-medium" ariaCurrentWhenActive="page"><i class="fa-regular fa-user"></i>&nbsp;{{ username }}</a>
+                        <p *ngIf="isLoggedIn" class="text-gray-300 !rounded !px-3 !py-2 !text-sm !font-medium"><i class="fa-regular fa-user"></i>&nbsp;{{ username }}</p>
                         <a *ngIf="isLoggedIn && role !='User'" class="text-gray-300 hover:bg-gray-700 hover:text-white !rounded !px-3 !py-2 !text-sm !font-medium" routerLink="/admin-panel" routerLinkActive="bg-gray-900 text-white rounded px-3 py-2 text-sm font-medium" ariaCurrentWhenActive="page"><i class="fa-solid fa-gears"></i>&nbsp;Admin Panel</a>
                         <a *ngIf="!isLoggedIn" class="text-gray-300 hover:bg-gray-700 hover:text-white !rounded !px-3 !py-2 !text-sm !font-medium" routerLink="/auth/signin" routerLinkActive="bg-gray-900 text-white rounded px-3 py-2 text-sm font-medium" ariaCurrentWhenActive="page"><i class="fa-solid fa-arrow-right-to-bracket"></i>&nbsp;Sign in</a>
                         <button *ngIf="isLoggedIn" (click)="logout()" class="text-gray-300 hover:bg-gray-700 hover:text-white !rounded !px-3 !py-2 !text-sm !font-medium"><i class="fa-solid fa-arrow-right-from-bracket"></i>&nbsp;Logout</button>
@@ -42,6 +42,8 @@
             <a class="text-gray-300 hover:bg-gray-700 hover:text-white !block !rounded !px-3 !py-2 !text-base !font-medium" routerLink="/movies" routerLinkActive="bg-gray-900 text-white block rounded px-3 py-2 text-base font-medium" ariaCurrentWhenActive="page">Movies</a>
             <a class="text-gray-300 hover:bg-gray-700 hover:text-white !block !rounded !px-3 !py-2 !text-base !font-medium" routerLink="/about"  routerLinkActive="bg-gray-900 text-white block rounded px-3 py-2 text-base font-medium" ariaCurrentWhenActive="page">About Us</a>
             <a class="text-gray-300 hover:bg-gray-700 hover:text-white !block !rounded !px-3 !py-2 !text-base !font-medium" routerLink="/contacts"  routerLinkActive="bg-gray-900 text-white block rounded px-3 py-2 text-base font-medium" ariaCurrentWhenActive="page">Contacts</a>
+            <a *ngIf="!isLoggedIn" class="text-gray-300 hover:bg-gray-700 hover:text-white !block !rounded !px-3 !py-2 !text-base !font-medium" routerLink="/auth/signin"  routerLinkActive="bg-gray-900 text-white block rounded px-3 py-2 text-base font-medium" ariaCurrentWhenActive="page">Sign in</a>
+            <a *ngIf="isLoggedIn && role !='User'" class="text-gray-300 hover:bg-gray-700 hover:text-white !block !rounded !px-3 !py-2 !text-base !font-medium" routerLink="/admin-panel"  routerLinkActive="bg-gray-900 text-white block rounded px-3 py-2 text-base font-medium" ariaCurrentWhenActive="page">Admin Panel</a>
         </div>
         <div class="border-t border-gray-700 pb-3 pt-4">
             <div class="flex items-center px-5">
@@ -49,13 +51,11 @@
                   <i class="fa-regular fa-user text-2xl text-white"></i>
                 </div>
                 <div class="ml-3">
-                <div class="text-base font-medium leading-none text-white">Tom Cook</div>
-                <div class="text-sm font-medium leading-none text-gray-400">tom@example.com</div>
+                <div class="text-base font-medium leading-none text-white">{{username}}</div>
                 </div>
             </div>
             <div class="mt-3 space-y-1 px-2">
-                <a href="/profile" class="block rounded px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Your Profile</a>
-                <a href="/sign-out" class="block rounded px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Sign out</a>
+                <button *ngIf="isLoggedIn" (click)="logout()" class="block rounded px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Sign out</button>
             </div>
         </div>
       </div>

@@ -24,7 +24,7 @@ export class AdminPageComponent {
     console.log($event.target.id)
     this.movieService.deleteMovie($event.target.id).subscribe({
       next: (res) => {
-        this.movieService.getMoviesByDateAsc().subscribe((movies) => {
+        this.movieService.getMoviesByIdDesc().subscribe((movies) => {
           this.movies = movies;
         })
         this.router.navigate(['/admin-panel']);
@@ -36,7 +36,7 @@ export class AdminPageComponent {
   }
 
   ngOnInit(): void {
-    this.movieService.getMoviesByDateAsc().subscribe((movies) => {
+    this.movieService.getMoviesByIdDesc().subscribe((movies) => {
       this.movies = movies;
     })
 

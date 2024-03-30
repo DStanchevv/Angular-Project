@@ -16,20 +16,49 @@ export class MovieEditPageComponent implements OnInit, OnDestroy{
   isLoading: boolean = true;
   form: FormGroup = this.fb.group({});
   movieSubscription!: Subscription
+  message: string = "";
+  fileList!: FileList;
+
+  onFileInputChange(event: any) {
+    console.log(event.target.files)
+    this.fileList = event.target.files;
+  }
+
+  refreshMovie() {
+    this.movieService.getMovieById(this.movie.id).subscribe({
+      next: (movie) => {
+        this.movie = movie;
+      },
+      error: (err) => {
+        console.error('Failed to fetch movies', err);
+      }
+    })
+  }
+
+  deleteImage(link: string) {
+    console.log(link)
+    this.movieService.deleteImage(link).subscribe({
+      next: () => {
+        this.refreshMovie();
+      },
+      error: (err) => {
+        console.error('failed to delete img');
+      }
+    });
+  }
   
   ngOnInit(): void {
     this.movieSubscription = this.activeRoute.params.subscribe(data => {
       this.movieService.getMovieById(data['movieId']).subscribe((movie) => {
         this.movie = movie
   
-        console.log("Movie name before form initialization:", this.movie.name);
-  
         this.form = this.fb.group({
           movieName: [this.movie.name, [Validators.required]],
           movieDescription: [this.movie.description, [Validators.required]],
           movieReleaseDate: [this.formatDate(this.movie.releaseDate), [Validators.required, dateValidator()]],
           movieDirector: [this.movie.directorName, [Validators.required]],
-          movieLength: [this.movie.length, [Validators.required]]
+          movieLength: [this.movie.length, [Validators.required]],
+          movieImages: [],
         });
   
         this.isLoading = false;
@@ -44,13 +73,19 @@ export class MovieEditPageComponent implements OnInit, OnDestroy{
     formData.append('ReleaseDate', this.form.get('movieReleaseDate')?.value);
     formData.append('DirectorName', this.form.get('movieDirector')?.value);
     formData.append('Length', this.form.get('movieLength')?.value);
-
+    if(this.fileList) {
+      Array.from(this.fileList).forEach((file) => {
+        console.log(file);
+        formData.append('files', file);
+      })
+    }
     
     this.movieService.updateMovie(formData, $event.target.id).subscribe({
       next: (res) => {
         this.router.navigate(['/admin-panel']);
       },
       error: (err) => {
+        this.message = "Invalid data!"
         console.log(err);
       }
     })

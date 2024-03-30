@@ -1,9 +1,13 @@
 <div class="flex justify-between container pb-6">
     <div class="relative">
-        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-            <i class="fa-solid fa-magnifying-glass w-4 h-4 text-gray-500 dark:text-gray-400"></i>
+        <div class="absolute inset-y-0 start-0 flex items-center ps-3">
+            <i (click)="onSearchChange()" class="fa-solid fa-magnifying-glass w-4 h-4 text-gray-500 dark:text-gray-400 hover:text-gray-300 hover:cursor-pointer"></i>
         </div>
         <input type="search" [(ngModel)]="searchTerm" (keyup.enter)="onSearchChange()" class="block p-4 ps-10 text-sm text-gray-300 border border-gray-600 rounded bg-gray-700 focus:ring-indgio-500 focus:border-indigo-500 placeholder-gray-400" placeholder="Search..." required />
+    </div>
+    <div class="flex items-center justify-center text-xl">
+        <i *ngIf="isLoggedIn && role !='Admin'" (click)="relDateDesc()" class="fa-solid fa-arrows-rotate w-4 h-4 text-gray-500 dark:text-gray-400 hover:text-gray-300 hover:cursor-pointer"></i>
+        <i *ngIf="isLoggedIn && role !='User'" (click)="idDesc()" class="fa-solid fa-arrows-rotate w-4 h-4 text-gray-500 dark:text-gray-400 hover:text-gray-300 hover:cursor-pointer"></i>
     </div>
     <div (mouseenter)="filterButtonOnHover()" (mouseleave)="filterButtonOnHoverOut()">
         <button class="text-white bg-indigo-500 hover:bg-indigo-500 font-medium rounded text-sm px-5 py-2.5 text-center inline-flex items-center" type="button">
@@ -23,6 +27,9 @@
                 </li>
                 <li>
                     <button (click)="nameDesc()" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Name Z-A</button>
+                </li>
+                <li *ngIf="isLoggedIn && role !='User'">
+                    <button (click)="idDesc()" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Id Z-A</button>
                 </li>
             </ul>
         </div>

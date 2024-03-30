@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 import { Movie } from "./types/movie";
 
@@ -27,15 +27,17 @@ export class MovieService {
     getMoviesByDateDesc() {
         return this.http.get<Movie[]>(`/api/Movie/order-movie-by-release-date-desc`)
     }
-
-    getAllMovies(page: number, perPage: number) {
-        return this.http.get<Movie[]>(`/api/Movie/get-all-movies?page=${page}&perPage=${perPage}`)
+    getMoviesByRatingDesc() {
+        return this.http.get<Movie[]>(`/api/Movie/order-movie-by-rating-desc`)
+    }
+    getMoviesByIdDesc() {
+        return this.http.get<Movie[]>(`/api/Movie/order-movie-by-id-desc`)
     }
 
     getMovieById(id: string) {
         return this.http.get<Movie>(`/api/Movie/get-movie/${id}`)
     }
-    addMovie(formData: FormData) {
+    addMovie(formData: FormData) {     
         return this.http.post<Movie>('/api/Movie/create-movie', formData);
     }
     updateMovie(formData: FormData, id: string) {
@@ -43,5 +45,20 @@ export class MovieService {
     }
     deleteMovie(id: string) {
         return this.http.delete<Movie>(`/api/Movie/delete-movie/${id}`);
+    }
+    commentMovie(id: string, comment: string) {
+        return this.http.post<Movie>(`/api/Movie/write-comment/${id}`, { description: comment });
+    }
+    rateMovie(id: string, rating: number) {
+        return this.http.post<Movie>(`/api/Movie/rate-movie/${id}?rating=${rating}`, {});
+    }
+    deleteComment(id: string) {
+        return this.http.delete<Movie>(`/api/Movie/delete-comment?commentid=${id}`);
+    }
+    updateRating(id: string, rating: number) {
+        return this.http.put<Movie>(`/api/Movie/update-rating/${id}?rating=${rating}`, {});
+    }
+    deleteImage(imgLink: string) {
+        return this.http.delete<Movie>(`/api/Movie/delete-image?imgLink=${imgLink}`);
     }
 }

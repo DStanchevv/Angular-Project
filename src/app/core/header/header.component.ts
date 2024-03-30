@@ -20,7 +20,7 @@ export class HeaderComponent implements OnDestroy{
 
     profileMenuClasses: String = "hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded bg-white py-1 shadow-lg transition ease-out duration-100";
     profileButtonClasses: String = "flex items-center justify-center w-10 h-10 rounded relative flex max-w-xs items-center bg-gray-800 text-sm hover:bg-gray-700 hover:text-white"
-    mobileMenuStyles: String = "md:hidden hidden"
+    mobileMenuStyles: String = "md:hidden"
     
     
     get username() {

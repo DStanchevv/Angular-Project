@@ -88,7 +88,7 @@
                 </label>
               </div>
               <div class="w-full">
-                <input type="file"  id="movieImages" formControlName="movieImages" multiple class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-indigo-500">
+                <input (change)="onFileInputChange($event)" type="file" id="movieImages" formControlName="movieImages" multiple class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-indigo-500">
               </div>
             </div>
             
@@ -97,6 +97,7 @@
                 <button class="shadow bg-indigo-500 hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded w-[10rem]" type="submit">
                   Add Movie
                 </button>
+                <p *ngIf="errMessage.trim().length > 0" class="bg-red-500 text-lg mt-2 p-5 text-white">{{errMessage}}</p>
               </div>
             </div>
           </form>
