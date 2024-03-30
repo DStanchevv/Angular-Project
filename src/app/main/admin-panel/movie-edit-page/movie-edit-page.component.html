@@ -107,7 +107,7 @@
             <button class="shadow bg-indigo-500 hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded w-[10rem]" type="submit">
               Save Movie
             </button>
-            <p *ngIf="message.trim().length > 0" class="text-red-500 text-lg mt-2">{{message}}</p>
+            <p *ngIf="errMessage.trim().length > 0" class="bg-red-500 text-lg mt-2 p-5 text-white">{{errMessage}}</p>
           </div>
         </div>
       </form>

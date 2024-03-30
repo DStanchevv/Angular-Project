@@ -16,8 +16,16 @@ export class MovieEditPageComponent implements OnInit, OnDestroy{
   isLoading: boolean = true;
   form: FormGroup = this.fb.group({});
   movieSubscription!: Subscription
-  message: string = "";
+  errMessage: string = "";
   fileList!: FileList;
+
+  showErrMessage(message: string) {
+    this.errMessage = message;
+
+    setTimeout(() => {
+      this.errMessage = '';
+    }, 1500);
+  }
 
   onFileInputChange(event: any) {
     console.log(event.target.files)
@@ -85,7 +93,7 @@ export class MovieEditPageComponent implements OnInit, OnDestroy{
         this.router.navigate(['/admin-panel']);
       },
       error: (err) => {
-        this.message = "Invalid data!"
+        this.errMessage = "Invalid data!"
         console.log(err);
       }
     })
